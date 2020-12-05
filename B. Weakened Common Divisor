@@ -1,0 +1,71 @@
+//in this code i can learn new thing 
+//it is that the common divisor in two input;
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 3007
+lli a[1000007],b[1000007];
+vector<lli>prime;
+void factor(lli n)
+{
+    lli s=sqrt(n);
+    for(lli i=2; i<=s; i++)
+    {
+        if(n%i==0)
+        {
+            while(n%i==0)
+            {
+                n/=i;
+            }
+            prime.pb(i);
+        }
+    }
+    if(n>1)prime.pb(n);
+}
+void solve()
+{
+    lli n,f,s;
+    cin>>n;
+    for(lli i=1; i<=n; i++)
+    {
+        cin>>a[i];
+        cin>>b[i];
+    }
+    factor(a[1]);
+    factor(b[1]);
+    for(lli d:prime)
+    {
+        bool bol=true;
+        for(lli i=2; i<=n; i++)
+        {
+            if((a[i]%d!=0)&& (b[i]%d!=0))
+            {
+                bol=false;
+                break;
+            }
+
+        }
+        if(bol)
+        {
+            cout<<d<<endl;
+            return;
+        }
+
+    }
+    cout<<-1<<endl;
+
+}
+int main()
+{
+    solve();
+}
+
+
