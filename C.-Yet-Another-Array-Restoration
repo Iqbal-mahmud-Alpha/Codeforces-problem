@@ -1,0 +1,117 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define m  10000007
+#define num 100000008
+vector<int>v;
+bool a[num];
+void sive()
+{
+    memset(a,true,sizeof(a));
+    a[0]=a[1]=false;
+    for(int i=4; i<num; i+=2)a[i]=false;
+    for(int i=3; i<=sqrt(num); i+=2)
+    {
+        if(a[i])
+        {
+            for(int j=i*i; j<num; j+=i*2)
+            {
+                a[j]=false;
+            }
+        }
+    }
+    for(int i=0; i<num; i++)
+    {
+        if(a[i])v.push_back(i);
+    }
+}
+void solved()
+{
+    lli n,x,y;
+
+    cin>>n>>x>>y;
+    lli dif=y-x;
+    for(lli i=1; i<=dif; i++)
+    {
+        vector<lli>ans;
+        lli  flag=0;
+        if(dif%i==0)
+        {
+            lli left=y,check=0;
+            ans.pb(y);
+            for(lli j=1; j<n; j++)
+            {
+                left=left-i;
+                if(left<=0)
+                {
+                    flag=1;
+                    ans.clear();
+                    break;
+                }
+                else
+                    ans.pb(left);
+            }
+            if(flag==1)
+            {
+                ans.pb(x);
+
+                lli right1=x,left1=x,cnt=0;
+                for(lli k=1; k<n; k++)
+                {
+                    right1-=i;
+                    if(right1<=0)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        ans.pb(right1);
+                        cnt++;
+                    }
+                }
+                for(lli k=1; k<n-cnt; k++)
+                {
+                    left1+=i;
+                    ans.pb(left1);
+
+                }
+
+            }
+            for(lli a:ans)
+            {
+                if(a==x||a==y)
+                {
+                    check++;
+                }
+            }
+            if(check==2)
+            {
+                for(lli a:ans)
+                {
+                    cout<<a<<" ";
+                }
+                cout<<endl;
+                break;
+            }
+        }
+    }
+}
+
+int main()
+{
+//    sive();
+    lli tc;
+    cin>>tc;
+    for(lli i=1; i<=tc; i++)
+    {
+        solved();
+    }
+
+}
