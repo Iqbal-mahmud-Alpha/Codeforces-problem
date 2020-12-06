@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long int
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 3007
+int main()
+{
+    int tc,n;
+    cin>>tc>>n;
+    int a[tc+1];
+    for(int i=1; i<=tc; i++)
+    {
+        cin>>a[i];
+    }
+    int ans=0,cnt=1;
+    while(true)
+    {
+        if(n+cnt>tc|| n-cnt<1)break;
+        if(a[n+cnt]==1&&a[n-cnt]==1)
+        {
+//            cout<<n+cnt<<" "<<n-cnt<<endl;
+            a[n+cnt]=a[n-cnt]=0;
+            ans+=2;
+        }
+        else
+        {
+//            cout<<n+cnt<<" "<<n-cnt<<endl;
+            a[n+cnt]=a[n-cnt]=0;
+        }
+        cnt++;
+    }
+    if(a[n]==1)
+    {
+        ans++;
+        a[n]=0;
+    }
+//    for(int i=1;i<=tc;i++)cout<<a[i]<<" ";
+    for(int i=1; i<=tc ; i++)
+    {
+        if(a[i]==1)ans++;
+    }
+    cout<<ans<<endl;
+}
+
+
+
+
