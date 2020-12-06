@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define lli long long
+#define ff first
+#define ss second
+#define pr pair<lli,lli>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  10000007
+int main()
+{
+    lli tc,n;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n;
+        vector<int>b(n);
+        map<lli,vector<lli>>m;
+
+
+        for(lli i=0; i<n; i++)
+        {
+            lli a;
+            cin>>a;
+            m[a].pb(i);
+        }
+        if(n==1)
+        {
+            cout<<"0"<<endl;
+           continue;
+        }
+        int len=2e5+2;
+        for(auto i:m)
+        {
+            int ok=0;
+            if(i.ss.size()==1)
+            {
+                if(i.ss[0]==0||i.ss[0]==n-1)
+                {
+                    len=min(1,len);
+
+                }
+                else
+                {
+                    len=min(2,len);
+                }
+                continue;
+            }
+           for(int j=0; j<(int)i.second.size(); j++)
+        {
+            if(j==0)
+            {
+                if(i.second[j]>=1)
+                    ok++;
+                continue;
+            }
+            if(j==(int)i.second.size()-1)
+            {
+                if(i.second[j]<(n-1))
+                    ok++;
+            }
+            if(i.second[j]-i.second[j-1]>1)
+                ok++;
+        }
+            len=min(ok,len);
+
+        }
+        cout<<len<<endl;
+
+    }
+}
