@@ -1,0 +1,75 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int tc,n;
+    cin>>n;
+    int ar[n];
+    vector<int>posative;
+    vector<int>nagative;
+    for(int i=0; i<n; i++)
+    {
+        cin>>ar[i];
+    }
+    int sum=0;
+    for(int i=0; i<n; i++)
+    {
+        if(ar[i]%2!=0 and ar[i]<0)
+        {
+            nagative.pb(i);
+        }
+        if(ar[i]%2!=0 and ar[i]>0)
+        {
+            posative.pb(i);
+        }
+        ar[i]=ar[i]/2;
+        sum+=ar[i];
+    }
+//        for(int i:posative)cout<<i<<" ";
+//        cout<<endl;
+//        for(int i:nagative)cout<<i<<" ";
+    if(sum==0)
+    {
+        for(int i=0; i<n; i++)
+        {
+            cout<<ar[i]<<endl;
+        }
+    }
+    else if(sum>0)
+    {
+        for(int i=0; i<abs(sum); i++)
+        {
+            --ar[nagative[i]];
+        }
+        for(int i=0; i<n; i++)
+        {
+            cout<<ar[i]<<endl;
+        }
+    }
+    else
+    {
+        for(int i=0; i<abs(sum); i++)
+        {
+            ++ar[posative[i]];
+        }
+        for(int i=0; i<n; i++)
+        {
+            cout<<ar[i]<<endl;
+        }
+    }
+}
