@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<int,int>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+int main()
+{
+    int n;
+    cin>>n;
+    int ar[7];
+    for(int i=0; i<7; i++)
+    {
+        cin>>ar[i];
+    }
+    int sum=0,i=0;
+    while(true)
+    {
+        sum+=ar[i];
+        if(sum>=n)
+        {
+            cout<<i+1<<endl;
+            break;
+        }
+        i++;
+//        cout<<sum<<endl;
+        if(i==7)i=0;
+    }
+}
+
