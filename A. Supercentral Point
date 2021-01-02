@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<int,int>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int tc,x,y;
+    cin>>tc;
+    vector<pr>v;
+    while(tc--)
+    {
+        cin>>x>>y;
+        v.pb(make_pair(x,y));
+    }
+    int ans=0,ok=0;
+    for(int i=0; i<v.size(); i++)
+    {
+        char l='0',r='0',u='0',d='0';
+        for(int j=0; j<v.size(); j++)
+        {
+            if(i!=j)
+            {
+                if(v[i].ff>v[j].ff and v[i].ss==v[j].ss)
+                {
+                    l='L';
+                }
+                if(v[i].ff<v[j].ff and v[i].ss==v[j].ss)
+                {
+                    r='R';
+                }
+                if(v[i].ff==v[j].ff and v[i].ss<v[j].ss)
+                {
+                    d='D';
+                }
+                if(v[i].ff==v[j].ff and v[i].ss>v[j].ss)
+                {
+                    u='U';
+                }
+            }
+        }
+        if(l=='L' and r=='R' and u=='U' and d=='D')ans++;
+    }
+    cout<<ans<<endl;
+}
