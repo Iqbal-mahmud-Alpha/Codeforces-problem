@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+const int N=15;
+
+int main()
+{
+    int tc,n;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n;
+        int a[n];
+        int b[n];
+        for(int i=0; i<n; i++)
+        {
+            cin>>a[i];
+        }
+        for(int i=0; i<n; i++)
+        {
+            cin>>b[i];
+        }
+        vector<int>v;
+        int falg=0,j=0;
+        for(int i=0; i<n; i++)
+        {
+            if(a[i]!=b[i])
+            {
+                for(j=i; j<n; j++)
+                {
+                    if(a[j]!=b[j])
+                    {
+                        v.pb(j);
+                    }
+                    else
+                    {
+                        falg=1;
+                        break;
+                    }
+                }
+                falg=1;
+            }
+            if(falg==1)break;
+        }
+        int d;
+        if(v.size()>=1)
+        {
+            d=abs(a[v[0]]-b[v[0]]);
+        }
+//        cout<<v.size()<<endl;
+        for(int i:v)
+        {
+            a[i]=a[i]+d;
+        }
+        int cnt=0;
+        for(int i=0; i<n; i++)
+        {
+            if(a[i]==b[i])cnt++;
+        }
+        if(cnt==n)cout<<"Yes"<<endl;
+        else cout<<"No"<<endl;
+    }
+}
