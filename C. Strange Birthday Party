@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define pb push_back
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    ll tc,n,m;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>m;
+        ll f[n],g[m];
+        for(int i=0; i<n; i++)
+        {
+            cin>>f[i];
+        }
+        for(int i=0; i<m; i++)
+        {
+            cin>>g[i];
+        }
+        sort(f,f+n,greater<>());
+        int j=0;
+        ll sum=0;
+        for(int i=0; i<n; i++)
+        {
+            if(j<f[i])
+            {
+                sum+=g[j];
+                j++;
+            }
+            else
+            {
+                sum+=g[f[i]-1];
+            }
+        }
+        cout<<sum<<endl;
+    }
+}
