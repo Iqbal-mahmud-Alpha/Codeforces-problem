@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define pb push_back
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    ll tc,n,m;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n;
+        ll ar[n];
+        for(int i=0; i<n; i++)cin>>ar[i];
+        ll total,mx=0;
+        for(int i=n-1; i>=0; i--)
+        {
+            total=0;
+            total+=ar[i];
+            if(i+ar[i]<n)
+            {
+                total+=ar[i+ar[i]];
+            }
+            ar[i]=total;
+            mx=max(mx,ar[i]);
+        }
+        cout<<mx<<endl;
+    }
+}
