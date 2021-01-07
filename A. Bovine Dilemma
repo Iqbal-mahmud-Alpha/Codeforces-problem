@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int tc,n;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n;
+        vector<int>ar;
+        for(int i=0; i<n; i++)
+        {
+            int a;
+            cin>>a;
+            ar.pb(a);
+        }
+        double ans=0;
+        sort(ar.begin(),ar.end());
+        set<double>st;
+        for(int i=0; i<n; i++)
+        {
+            for(int j=i; j<n; j++)
+            {
+                ans=0.5*abs(ar[j]-ar[i]);
+                if(ans!=0)st.insert(ans);
+            }
+        }
+        cout<<st.size()<<endl;
+    }
+}
