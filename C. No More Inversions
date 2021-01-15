@@ -1,0 +1,89 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define     all(x)      x.begin(),x.end()
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int tc,n,k;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>k;
+        vector<int>v;
+        for(int i=1; i<=k; i++)
+        {
+            v.pb(i);
+        }
+        int l=abs(n-k);
+        while(l--)
+        {
+            v.pb(--k);
+        }
+        int mx=*max_element(v.begin(),v.end());
+        int index=0;
+        for(int i=0; i<v.size(); i++)
+        {
+            if(mx==v[i])
+            {
+                index=i;
+                break;
+            }
+        }
+        vector<int>p;
+        map<int,int>m;
+        for(int i=index; i<v.size(); i++)
+        {
+            p.pb(v[i]);
+            m[v[i]]++;
+        }
+        vector<int>p1;
+        for(int i=0; i<v.size(); i++)
+        {
+            if(m.find(v[i])==m.end())
+            {
+                p1.pb(v[i]);
+            }
+        }
+        for(int i:p1)
+        {
+            cout<<i<<' ';
+        }
+        for(int i:p)
+        {
+            cout<<i<<' ';
+        }
+        cout<<endl;
+
+    }
+}
+
