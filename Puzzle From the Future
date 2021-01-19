@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000008
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+void solve()
+{
+
+}
+int main()
+{
+    int tc,n;
+    string ar;
+    cin>>tc;
+    cin.ignore();
+    while(tc--)
+    {
+        cin>>n;
+        cin>>ar;
+        int res[n],ans[n];
+        res[0]=(ar[0]-'0')+('1'-'0');
+        ans[0]=1;
+//        cout<<res[0]<<endl;
+        for(int i=1; i<n; i++)
+        {
+            if(res[i-1]==(ar[i]-'0')+1)
+            {
+                ans[i]=0;
+                res[i]=(ar[i]-'0')+0;
+            }
+            else if(res[i-1]!=ar[i])
+            {
+                ans[i]=1;
+                res[i]=(ar[i]-'0')+1;
+            }
+        }
+        for(int i:ans)cout<<i;
+        cout<<endl;
+    }
+}
