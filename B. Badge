@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a,b)   __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000
+
+/**------- Char Chk----------*/
+bool is_lower(char ch)
+{
+    if(ch>='a' && ch<='z') return true;
+    return false;
+}
+bool is_upper(char ch)
+{
+    if(ch>='A' && ch<='Z') return true;
+    return false;
+}
+bool is_digit(char ch)
+{
+    if(ch>='0' && ch<='9') return true;
+    return false;
+}
+bool vowel(char ch)
+{
+    if(ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U' || ch=='Y')
+    {
+        return true;
+    }
+    else return false;
+}
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int ar[n+1];
+
+    for(int i=1; i<=n; i++)
+    {
+        cin>>ar[i];
+    }
+    for(int i=1; i<=n; i++)
+    {
+        int j=i;
+        map<int,int>m;
+        m[j]++;
+        while(true)
+        {
+            j=ar[j];
+            m[j]++;
+            if(m[j]>1)
+            {
+                break;
+            }
+        }
+        cout<<j<<' ';
+    }
+}
+
+
+
