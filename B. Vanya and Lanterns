@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define mem(a,b)       memset(a,b,sizeof(a))
+#define ff first
+#define all(x)  (x.begin(),x.end())
+#define ss second
+#define pr pair<ll,ll>
+#define pb push_back
+#define gcd(a,b)    __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000000
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int n,v;
+    cin>>n>>v;
+    int ar[n];
+    for(int i=0; i<n; i++)
+    {
+        cin>>ar[i];
+    }
+    sort(ar,ar+n);
+    int dif=0;
+    for(int i=0; i<n-1; i++)
+    {
+        int d=abs(ar[i]-ar[i+1]);
+        if(dif<d)
+        {
+            dif=d;
+        }
+    }
+    double first=ar[0];
+    double last=v-ar[n-1];
+    double d=(double)dif/2;
+    double ans=max(d,max(first,last));
+    cout<<fixed<<setprecision(10)<<ans<<endl;
+}
