@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a,b)   __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define mod  1000000007
+#define num 1000000
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int n,a,b,c;
+    cin>>n>>a>>b>>c;
+    int ans=0;
+    for(int x=0; x<=4000; x++)
+    {
+        for(int y=0; y<=4000; y++)
+        {
+            int zc=n-(a*x+b*y);
+            if(zc<0)break;
+            double z=(zc/(double)c);
+            if(z==(int)z)
+            {
+                ans=max(ans,(int)(x+y+z));
+            }
+        }
+    }
+    cout<<ans<<endl;
+}
+
+
