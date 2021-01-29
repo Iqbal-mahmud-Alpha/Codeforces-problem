@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a,b)   __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define all(a)     a.begin(),a.end()
+#define mod  1000000007
+#define num 1000000
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+bool digit(int n,int q)
+{
+    while(n)
+    {
+        if(n%10==q)
+        {
+            return true;
+        }
+        n/=10;
+    }
+    return false;
+}
+int main()
+{
+    int tc,n,a,b,q;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>q;
+        int ar[n];
+        for(int i=0; i<n; i++)
+        {
+            cin>>ar[i];
+        }
+        for(int i=0; i<n; i++)
+        {
+            int flag=0;
+            while(ar[i]>0)
+            {
+                if(digit(ar[i],q))
+                {
+                    flag=1;
+                    break;
+                }
+                ar[i]-=q;
+            }
+            cout<<((flag==1)?"YES":"NO")<<endl;
+        }
+    }
+}
