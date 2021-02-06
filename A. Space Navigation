@@ -1,0 +1,68 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int tc,x,y;
+    cin>>tc;
+    while(tc--)
+    {
+        string s;
+        cin>>x>>y>>s;
+        if(x>=0 and y>=0)
+        {
+            int r=0,u=0;
+            for(int i=0; i<s.size(); i++)
+            {
+                if(s[i]=='R')r++;
+                else if(s[i]=='U')u++;
+            }
+            if(r>=x and u>=y)
+            {
+                cout<<"YES"<<endl;
+            }
+            else cout<<"NO"<<endl;
+        }
+        else if(x>=0 and y<=0)
+        {
+            int r=0,d=0;
+            for(int i=0; i<s.size(); i++)
+            {
+                if(s[i]=='R')r++;
+                else if(s[i]=='D')d++;
+            }
+            if(r>=x and d>=abs(y))
+            {
+                cout<<"YES"<<endl;
+            }
+            else cout<<"NO"<<endl;
+        }
+        else if(x<=0 and y<=0)
+        {
+            int l=0,d=0;
+            for(int i=0; i<s.size(); i++)
+            {
+                if(s[i]=='L')l++;
+                else if(s[i]=='D')d++;
+            }
+            if(l>=abs(x) and d>=abs(y))
+            {
+                cout<<"YES"<<endl;
+            }
+            else cout<<"NO"<<endl;
+        }
+        else if(x<=0 and y>=0)
+        {
+            int l=0,u=0;
+            for(int i=0; i<s.size(); i++)
+            {
+                if(s[i]=='L')l++;
+                else if(s[i]=='U')u++;
+            }
+            if(l>=abs(x) and u>=y)
+            {
+                cout<<"YES"<<endl;
+            }
+            else cout<<"NO"<<endl;
+        }
+    }
+}
