@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define faster         ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a,b)   __gcd(a,b)
+#define lcm(a,b)    (a*(b/gcd(a,b)))
+#define all(a)     a.begin(),a.end()
+#define mod  1000000007
+#define num 1000000
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    int tc,n,k;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>k;
+        if(k==1)
+        {
+            cout<<((n%2)?"YES":"NO")<<endl;
+        }
+        else
+        {
+            int s=sqrt(n);
+            int check = n - (k - 1);
+            if(check%2 and s>=k)
+            {
+                cout<<"YES"<<endl;
+            }
+            else cout<< "NO"<<endl;
+        }
+    }
+}
