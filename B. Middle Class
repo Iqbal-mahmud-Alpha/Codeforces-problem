@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    ll tc,n,x;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>x;
+        ll a[n];
+        for(int i=0; i<n; i++)
+        {
+            cin>>a[i];
+        }
+        sort(a,a+n);
+        ll sum=0;
+        for(int i=0; i<n; i++)
+        {
+            sum+=a[i];
+        }
+        ll i=0,c=n;
+        while(n)
+        {
+            ll res=sum/n;
+            if(res<x)
+            {
+                sum-=a[i];
+                i++;
+                n--;
+            }
+            else
+            {
+                break;
+            }
+        }
+        cout<<n<<endl;
+    }
+
+}
