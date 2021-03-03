@@ -1,0 +1,105 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster  ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define mod 10000007
+#define num 1000000
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+bool check(string s)
+{
+    stack<char>st;
+    for(int i=0; i<s.size(); i++)
+    {
+        if(s[i]=='(')
+        {
+            st.push(s[i]);
+        }
+        else if(s[i]==')')
+        {
+            if(!st.empty())
+            {
+                char ch=st.top();
+                if(ch!='(')
+                {
+                    return false;
+                }
+                else
+                {
+                    st.pop();
+                }
+            }
+            else return false;
+        }
+    }
+    if(st.empty())
+    {
+        return true;
+    }
+    else return false;
+}
+int main()
+{
+    int tc;
+    cin>>tc;
+    while(tc--)
+    {
+        string s;
+        cin>>s;
+        if(s[0]!=s[s.size()-1])
+        {
+            char ch1=s[0];
+            char ch2=s[s.size()-1];
+            string ans="";
+            for(int i=0; i<s.size(); i++)
+            {
+                if(s[i]==ch1)
+                {
+                    ans+='(';
+                }
+                else if(s[i]==ch2)
+                {
+                    ans+=')';
+                }
+                else ans+='(';
+            }
+            if(check(ans))
+            {
+                cout<<"YES"<<endl;
+            }
+            else
+            {
+                ans="";
+                for(int i=0; i<s.size(); i++)
+                {
+                    if(s[i]==ch1)
+                    {
+                        ans+='(';
+                    }
+                    else if(s[i]==ch2)
+                    {
+                        ans+=')';
+                    }
+                    else ans+=')';
+                }
+                if(check(ans))
+                {
+                    cout<<"YES"<<endl;
+                }
+                else cout<<"NO"<<endl;
+            }
+        }
+        else
+        {
+            cout<<"NO"<<endl;
+        }
+    }
+}
