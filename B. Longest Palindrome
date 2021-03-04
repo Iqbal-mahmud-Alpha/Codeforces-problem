@@ -1,0 +1,131 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster  ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define mod 10000007
+#define num 1000000
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+bool check(string s1,string s2)
+{
+    string ans="";
+    for(int i=s2.size()-1; i>=0; i--)
+    {
+        ans+=s2[i];
+    }
+    if(s1.compare(ans)==0)return true;
+    else return false;
+}
+bool midcheck (string s1)
+{
+    int l=s1.size();
+    string s2;
+    if(l%2==0)
+    {
+        s2=s1.substr(0,l/2);
+    }
+    else
+    {
+        s2=s1.substr(0,l/2);
+    }
+    string s3="";
+    if(l%2==0)
+    {
+        for(int i=s1.size()-1; i>=l/2; i--)
+        {
+            s3+=s1[i];
+        }
+    }
+    else
+    {
+        for(int i=s1.size()-1; i>l/2; i--)
+        {
+            s3+=s1[i];
+        }
+    }
+//    cout<<s2<<' '<<s3<<endl;
+    if(s2==s3)
+    {
+        return true;
+    }
+    else return false;
+}
+int main()
+{
+    int n,k;
+    cin>>n>>k;
+    int a[n];
+    memset(a,0,sizeof(a));
+    string s;
+    vector<string>v;
+    while(n--)
+    {
+        cin>>s;
+        v.pb(s);
+    }
+    vector<string>ans;
+    int cnt=1;
+    for(int i=0; i<v.size(); i++)
+    {
+        cnt=1;
+        if(a[i]!=1)
+        {
+            for(int j=i+1; j<v.size(); j++)
+            {
+                if(check(v[i],v[j]))
+                {
+                    a[j]=1;
+                    a[i]=1;
+                    cnt++;
+                    if(cnt%2==0)ans.pb(v[i]);
+                }
+            }
+        }
+    }
+    int flag=0;
+    for(int i=0; i<v.size(); i++)
+    {
+        if(a[i]==0)
+        {
+            int l=v[i].size();
+            if(midcheck(v[i]))
+            {
+                if(l%2==0)
+                {
+                    ans.pb(v[i].substr(0,l/2));
+                }
+                else
+                {
+                    flag=1;
+                    ans.pb(v[i].substr(0,l/2+1));
+                }
+                break;
+            }
+        }
+    }
+    string res="";
+    for(auto i:ans)res+=i;
+    if(flag==1)
+    {
+        for(int i=res.size()-2; i>=0; i--)
+        {
+            res+=res[i];
+        }
+    }
+    else
+    {
+        for(int i=res.size()-1; i>=0; i--)
+        {
+            res+=res[i];
+        }
+    }
+    cout<<res.size()<<endl;
+    cout<<res<<endl ;
+}
