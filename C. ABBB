@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster  ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define mod 1000000007
+#define num 1000000
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    ll tc;
+    cin>>tc;
+    while(tc--)
+    {
+        string s;
+        cin>>s;
+        stack<char>st;
+        for(int i=0; i<s.size(); i++)
+        {
+            if(s[i]=='A')
+            {
+                st.push(s[i]);
+            }
+            else if(s[i]=='B')
+            {
+                if(!st.empty())
+                {
+                    char ch=st.top();
+                    if(ch=='A' or ch=='B')st.pop();
+                }
+                else
+                {
+                    st.push(s[i]);
+                }
+            }
+        }
+        cout<<st.size()<<endl;
+    }
+}
