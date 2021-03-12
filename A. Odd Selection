@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster  ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define INF 1000000000
+#define mod 1000000007
+#define num 100005
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    ll tc,n,x,a;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>x;
+        ll odd=0,even=0;
+        for(int  i=1; i<=n; i++)
+        {
+            cin>>a;
+            if(a%2)odd++;
+            else even++;
+        }
+        int len=0;
+        if(odd%2)
+        {
+            len=even+odd;
+        }
+        else len=even+odd-1;
+        if(even==0)
+        {
+            if(x%2==1 and odd>=x)
+            {
+                cout<<"YES"<<endl;
+            }
+            else
+            {
+                cout<<"NO"<<endl;
+            }
+        }
+        
+        else  if(even>=1 and odd>=1)
+        {
+            cout<<((len>=x)?"YES":"NO")<<endl;
+        }
+        else
+        {
+            cout<<"NO"<<endl;
+        }
+
+    }
+}
+
+
+
