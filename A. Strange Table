@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+
+#define fr0(i, n)      for(int i=0; i<n; i++)
+#define fr1(i, n)      for(int i=1; i<=n; i++
+
+#define mem(a,b)  memset(a,b,sizeof(a))
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define setbit(n) __builtin_popcount(n);
+#define totalbit(n) log2(n)+1
+#define precision(x)      cout<<fixed<<setprecision(x)
+#define INF 1000000000
+#define mod 1000000007
+#define num 3200
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    faster
+    ll tc,n,m,k;
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n>>m>>k;
+        ll row=1,col=1,cnt1=1,cnt2=n;
+        col=(k/n);
+        if(k%n!=0)col++;
+        cnt1=1+(col-1)*n;
+        row=abs(cnt1-k)+1;
+        //cout<<row<<' '<<col<<endl;
+        ll row1=1+(row-1)*m;
+        ll ans=row1+(col-1);
+        cout<<ans<<endl;
+    }
+}
