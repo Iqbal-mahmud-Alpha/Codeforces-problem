@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define mem(a,b)  memset(a,b,sizeof(a))
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define setbit(n) __builtin_popcount(n);
+#define totalbit(n) log2(n)+1
+#define precision(x)      cout<<fixed<<setprecision(x)
+#define INF 1000000000
+#define mod 1000000007
+#define num 100005
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int LCS(string X, string Y, int m, int n)
+{
+    int dp[m+1][n+1];
+    for(int i=0; i<=m; i++)
+    {
+        dp[i][0]=0;
+    }
+    for(int i=0; i<=n; i++)
+    {
+        dp[0][i]=0;
+    }
+    int res=0,r=0,c=0;
+    for(int  i=1; i<=m; i++)
+    {
+        for(int j=1; j<=n; j++)
+        {
+            if(X[i-1]==Y[j-1])
+            {
+                dp[i][j]=1+dp[i-1][j-1];
+                if(res<dp[i][j])
+                {
+                    res=dp[i][j];
+                    r=i;
+                    c=j;
+                }
+            }
+            else dp[i][j]=0;
+        }
+    }
+    ///cout<<r<<' '<<c<<endl;
+    string ans="";
+    while(dp[r][c]!=0)
+    {
+        ans+=X[r-1];
+        r--,c--;
+    }
+   ///cout<<ans<<endl;
+    return  ans.size();
+}
+
+int main()
+{
+    int t;
+    string X,Y;
+    cin>>t;
+    while(t--)
+    {
+        cin>>X>>Y;
+        int m=X.size();
+        int n=Y.size();
+        int len=LCS(X, Y, m, n);
+        int ans=(m-len)+(n-len);
+        cout<<ans<<endl;
+    }
+
+    return 0;
+}
+
+
+
