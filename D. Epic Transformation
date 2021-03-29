@@ -1,0 +1,103 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster      ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff first
+#define ss second
+#define pb push_back
+#define mem(a,b)  memset(a,b,sizeof(a))
+#define gcd(a, b) __gcd(a, b)
+#define lcm(a, b) (a * (b / gcd(a, b)))
+#define all(a) a.begin(), a.end()
+#define setbit(n) __builtin_popcount(n);
+#define totalbit(n) log2(n)+1
+#define precision(x)      cout<<fixed<<setprecision(x)
+#define INF 1000000000
+#define mod 1000000007
+#define num 100005
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+vector<int>rearrangeArray(int arr[], int N)
+{
+
+    map<int, int>mp, visited;
+
+    for(int i = 0; i < N; i++)
+    {
+        mp[arr[i]]++;
+    }
+
+    priority_queue<pair<int, int>>pq;
+
+    for(int i = 0; i < N ; i++)
+    {
+        int val = arr[i];
+
+        if (mp[val] > 0 and visited[val] != 1)
+        {
+            pq.push({mp[val], val});
+        }
+        visited[val] = 1;
+    }
+
+    vector<int>result(N);
+    pair<int, int>prev = { -1, -1 };
+    int l = 0;
+    while (pq.size() != 0)
+    {
+        pair<int,int>k = pq.top();
+        pq.pop();
+        result[l] = k.second;
+        if (prev.first > 0)
+        {
+            pq.push(prev);
+        }
+        k.first--;
+        prev = k;
+        l++;
+    }
+    return result;
+}
+
+int main()
+{
+    int t,n;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n;
+        int A[n],cnt=0;
+        for(int i=0; i<n; i++)
+        {
+            cin>>A[i];
+        }
+        vector<int>v=rearrangeArray(A, n);
+        stack<int>s;
+        //for(int i:v)cout<<i<<' ';
+        int i=0;
+        while(i<v.size())
+        {
+            if(s.empty())
+            {
+                if(v[i]!=0)
+                    s.push(v[i]);
+                else cnt++;
+            }
+            else if(!s.empty())
+            {
+                if(v[i]==0)cnt++;
+                else if(s.top()!=v[i])
+                {
+                    s.pop();
+                }
+                else
+                {
+                    s.push(v[i]);
+                }
+            }
+            i++;
+        }
+        cout<<s.size()+cnt<<endl;
+    }
+}
