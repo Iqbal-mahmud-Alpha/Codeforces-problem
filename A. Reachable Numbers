@@ -1,0 +1,65 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define len(a)            sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007
+#define num               100005
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+string check(int n)
+{
+    string s;
+    s=to_string(n);
+    reverse(all(s));
+    int len=s.size(),cnt=0;
+    if(s[0]=='0')
+    {
+        for(int i=0; i<len; i++)
+        {
+            if(s[i]=='0')
+            {
+                cnt++;
+            }
+            else break;
+        }
+    }
+    //cout<<s<<' ';
+    s = s.substr(cnt,len);
+    reverse(all(s));
+    return s;
+}
+int main()
+{
+    int n,cnt=1;
+    cin>>n;
+    map<int,int>m;
+    m[n]++;
+    while(n++)
+    {
+        n=stoi(check(n));
+        if(m[n]==0)
+        {
+            m[n]++;
+            cnt++;
+        }
+        else break;
+    }
+    cout<<cnt<<endl;
+}
+
+
