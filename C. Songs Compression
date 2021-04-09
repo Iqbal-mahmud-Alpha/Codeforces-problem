@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<ll,ll>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define len(a)            sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007
+#define num               100005
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+bool com(pr a,pr b)
+{
+    return abs(a.ff-a.ss)>abs(b.ff-b.ss);
+}
+int main()
+{
+    ll tc,n,x,y,m;
+    vector<pr>v;
+    cin>>n>>m;
+    for(int i=0; i<n; i++)
+    {
+        cin>>x>>y;
+        v.pb({x,y});
+    }
+    sort(all(v),com);
+//    for(auto i:v)
+//    {
+//        cout<<i.ff<<' '<<i.ss<<endl;
+//    }
+    ll sumx=0,sumy=0;
+    for(auto i:v)
+    {
+        sumx+=i.ff;
+        sumy+=i.ss;
+    }
+    if(sumy>m)
+    {
+        cout<<-1<<endl;
+        return 0;
+    }
+    int cnt=0;
+    for(auto i:v)
+    {
+        ll dif=i.ff-i.ss;
+        if(sumx>m)
+        {
+            sumx-=dif;
+            cnt++;
+        }
+        else if(sumx<=m)break;
+    }
+    cout<<cnt<<endl;
+}
+
