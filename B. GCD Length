@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define p                pair<ll,ll>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define lens(s)           s.size()
+#define lena(a)            sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007
+#define num               100000000
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+int main()
+{
+    ll tc,n,a,b,c;
+    vector<int>v;
+    v.pb(2);
+    v.pb(11);
+    v.pb(101);
+    v.pb(1009);
+    v.pb(10007);
+    v.pb(104729);
+    v.pb(1000003);
+    v.pb(10000019);
+    v.pb(179424673);
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>a>>b>>c;
+        ll x=v[c-1];
+        for(int i=1; i<=32; i++)
+        {
+            ll len=to_string(x).size();
+            if(len==a)
+            {
+                cout<<x<<' ';
+                break;
+            }
+            else x*=2;
+        }
+        x=v[c-1];
+        for(int i=1; i<=32; i++)
+        {
+
+            ll len=to_string(x).size();
+            if(len==b)
+            {
+                cout<<x<<endl;
+                break;
+            }
+            else x*=3;
+        }
+    }
+}
+
