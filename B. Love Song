@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define lens(s)           s.size()
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007 //10^9+7;
+#define num               100005
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+int main()
+{
+    int n,q,l,r;
+
+    string s;
+    cin>>n>>q>>s;
+    int a[n];
+    for(int i=0; i<lens(s); i++)
+    {
+        a[i]=(int)s[i]-96;
+    }
+    ll pre[n];
+    pre[0]=a[0];
+    for(int i=1; i<lens(s); i++)
+    {
+        pre[i]=a[i]+pre[i-1];
+    }
+    while(q--)
+    {
+        cin>>l>>r;
+        l--,r--;
+        if(l==0)
+        {
+            cout<<pre[r]<<endl;
+        }
+        else
+        {
+            cout<<pre[r]-pre[l-1]<<endl;
+        }
+    }
+}
+
