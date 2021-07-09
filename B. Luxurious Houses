@@ -1,0 +1,90 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define lens(s)           s.size()
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007 //10^9+7;
+#define num               100005
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+int arr[num];
+
+int tree[num*3];
+
+void builtree(int node,int ss,int ee)
+{
+    if(ss==ee)
+    {
+        tree[node]=arr[ss];
+        return;
+    }
+    int left=node*2;
+    int right=node*2+1;
+    int mid=(ss+ee)/2;
+    builtree(left,ss,mid);
+    builtree(right,mid+1,ee);
+    tree[node]=max(tree[left],tree[right]);
+}
+int query(int node,int b,int e,int i,int j)
+{
+    if(i>e or j<b)
+    {
+        return -1;
+    }
+    if(b>=i and e<=j)
+    {
+        return tree[node];
+    }
+    int left=node*2;
+    int right=node*2+1;
+    int mid=(b+e)/2;
+    int p1=query(left,b,mid,i,j);
+    int p2=query(right,mid+1,e,i,j);
+    return max(p1,p2);
+}
+int main()
+{
+    ll n;
+    cin>>n;
+    for(int i=1; i<=n; i++)
+    {
+        cin>>arr[i];
+    }
+    builtree(1,1,n);
+    ll ans=0;
+    for(int i=1; i<n; i++)
+    {
+        ll mx=query(1,1,n,i+1,n);
+        if(mx>=arr[i])
+        {
+            ans=mx+1;
+            cout<<ans-arr[i]<<' ';
+        }
+        else cout<<0<<' ';
+    }
+    cout<<0<<endl;
+}
+
+ 
