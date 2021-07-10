@@ -1,0 +1,69 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define lens(s)           s.size()
+#define nl                endl
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007 //10^9+7;
+#define num               100005
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+bool cmp(pair<string,int> a,pair<string,int> b)
+{
+    return a.ss<b.ss;
+}
+
+int main()
+{
+    ll tc,n;
+    cin>>n;
+    ll sum=n*(n+1)/2;
+    ll ans=0;
+    for(ll i=1; i<=n; i++)
+    {
+        ll gc=gcd(sum-i,i);
+        if(gc>1)
+        {
+            ans=i;
+            break;
+        }
+    }
+    if(ans==0)
+    {
+        cout<<"No"<<endl;
+    }
+    else
+    {
+        cout<<"Yes"<<nl;
+        cout<<1<<' '<<ans<<nl;
+        cout<<n-1<<' ';
+        for(int i=1; i<=n; i++)
+        {
+            if(i==ans)continue;
+            else cout<<i<<' ';
+        }
+        cout<<nl;
+    }
+}
