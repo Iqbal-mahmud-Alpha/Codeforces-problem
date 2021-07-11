@@ -1,0 +1,74 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define lens(s)           s.size()
+#define nl                endl
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007 //10^9+7;
+#define num               100005
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+int main()
+{
+    ll a[3][3];
+    ll sum,mx=0;
+    for(int i=0; i<3; i++)
+    {
+        sum=0;
+        for(int j=0; j<3; j++)
+        {
+            cin>>a[i][j];
+            sum+=a[i][j];
+            mx=max(mx,sum);
+        }
+    }
+    a[0][0]=mx-(a[0][1]+a[0][2]);
+    a[1][1]=mx-(a[1][0]+a[1][2]);
+    a[2][2]=mx-(a[2][0]+a[2][1]);
+    sum=a[0][0]+a[1][1]+a[2][2];
+    ll sum1=a[0][0]+a[0][1]+a[0][2];
+    while(true)
+    {
+        if(sum1==sum)break;
+        else
+        {
+            sum+=3;
+            sum1+=1;
+        }
+    }
+    a[0][0]=sum-(a[0][1]+a[0][2]);
+    a[1][1]=sum-(a[1][0]+a[1][2]);
+    a[2][2]=sum-(a[2][0]+a[2][1]);
+    
+    for(int i=0; i<3; i++)
+    {
+        for(int j=0; j<3; j++)
+        {
+            cout<<a[i][j]<<' ';
+        }
+        cout<<nl;
+    }
+
+}
