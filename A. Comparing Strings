@@ -1,0 +1,96 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define nl                endl
+#define len(v)            v.size()
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define no                "NO"
+#define yes               "YES"
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007 //10^9+7;
+#define num               100005
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+void solved()
+{
+    string s1,s2;
+    cin>>s1>>s2;
+    map<char,int>m1,m2;
+
+    if(len(s1)!=len(s2))
+    {
+        cout<<"NO"<<nl;
+    }
+    else
+    {
+        for(char i:s2)
+        {
+            m1[i]++;
+        }
+        for(char i:s1)
+        {
+            m2[i]++;
+        }
+        int cnt=0;
+        vector<char>v1,v2;
+        for(int i=0; i<len(s1); i++)
+        {
+            if(s1[i]!=s2[i])
+            {
+                v1.pb(s1[i]);
+                v2.pb(s2[i]);
+                cnt++;
+            }
+        }
+        int f=0;
+        for(char i:v1)
+        {
+            if(m1[i]==0)f=1;
+        }
+        for(char i:v2)
+        {
+            if(m2[i]==0)f=1;
+        }
+        if(cnt==2 or cnt==0)
+        {
+            if(f==1)cout<<"NO"<<nl;
+            else cout<<"YES"<<nl;
+        }
+        else
+        {
+            cout<<"NO"<<nl;
+        }
+    }
+}
+
+int main()
+{
+    int tc;
+    tc=1;
+    //cin>>tc;
+    while(tc--)
+    {
+        solved();
+    }
+}
