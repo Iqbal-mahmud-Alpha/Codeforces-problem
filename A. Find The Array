@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define nl                endl;
+#define len(s)            s.size()
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007 //10^9+7;
+#define num               50005
+
+/**----data type----*/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+
+
+int main()
+{
+    int i=1,ans=1,aa=1,bb=1,j=1;
+    map<int,pr>m;
+    for(int i=1; i<=1000; i+=2)
+    {
+        m[ans]= {aa,bb};
+        aa=bb;
+        j+=2;
+        aa++,bb=aa+j-1;
+        ans++;
+    }
+    
+    int tc,n;
+    
+    cin>>tc;
+    while(tc--)
+    {
+        cin>>n;
+        for(auto i:m)
+        {
+            if(n>=i.ss.ff and n<=i.ss.ss)
+            {
+                cout<<i.ff<<nl;
+                break;
+            }
+        }
+    }
+}
