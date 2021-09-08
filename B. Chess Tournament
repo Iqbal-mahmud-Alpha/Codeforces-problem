@@ -1,0 +1,125 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define nl                endl
+#define len(v)            v.size()
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define no                cout<<"NO"<<nl;
+#define yes               cout<<"YES"<<nl;
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007 //10^9+7;
+#define num               100
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+char check(char a,char b)
+{
+    if(a=='1' and b=='1')return '=';
+    else if(a=='2' and b=='2')return '-';
+    else if(a=='1' and b=='2')return '+';
+    else if(a=='2' and b=='1') return '-';
+}
+void solved()
+{
+    int n;
+
+    string s;
+    cin>>n>>s;
+    char ch[n][n];
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            ch[i][j]='0';
+        }
+    }
+    for(int i=0; i<n; i++)
+    {
+        int f=0;
+        for(int j=0; j<n; j++)
+        {
+            if(i==j)
+            {
+                ch[i][j]='X';
+            }
+            else if(ch[i][j]=='0')
+            {
+                char c=check(s[i],s[j]);
+                if(s[i]=='2' and s[j]=='2'){
+                    if(f==0){
+                        ch[i][j]='+';
+                        ch[j][i]='-';
+                        f=1;
+                    }
+                    else{
+                        ch[i][j]='-';
+                        ch[j][i]='+';
+                    }
+                }
+                else ch[i][j]=c;
+            }
+        }
+    }
+    int sum=0;
+    for(int i=0; i<n; i++)
+    {
+
+        char c=s[i];
+        int cnt=0;
+        for(int j=0; j<n; j++)
+        {
+            if(ch[i][j]=='+' or ch[i][j]=='=')cnt++;
+        }
+        if(c=='1'  and cnt==n-1)
+        {
+            sum++;
+        }
+        else if(c=='2' and cnt>=1)
+        {
+            sum++;
+        }
+    }
+    if(sum==n)
+    {
+        yes
+        for(int i=0; i<n; i++)
+        {
+            for(int j=0; j<n; j++)
+            {
+                cout<<ch[i][j];
+            }
+            cout<<nl;
+        }
+    }
+    else no
+
+    }
+int main()
+{
+    ll tc;
+    cin>>tc;
+    while(tc--)
+    {
+        solved();
+    }
+}
