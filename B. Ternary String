@@ -1,0 +1,98 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define nl                endl
+#define len(v)            v.size()
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define no                cout<<"NO"<<nl;
+#define yes               cout<<"YES"<<nl;
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               1000000000
+#define mod               1000000007 //10^9+7;
+#define num               100005
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+vector<int> maxRepeating(string str)
+{
+    int n = str.length();
+    int count = 0;
+    char res = str[0];
+    int cur_count = 1;
+    vector<int>v;
+    for (int i=0; i<n; i++)
+    {
+        if (i < n-1 && str[i] == str[i+1])
+            cur_count++;
+        else
+        {
+            if (cur_count >=count)
+            {
+                count = cur_count;
+                v.pb(count);
+            }
+            else
+            {
+                v.pb(cur_count);
+            }
+            cur_count = 1;
+        }
+    }
+    return v;
+}
+void solved()
+{
+    string s,ans;
+    cin>>s;
+    vector<int>v=maxRepeating(s);
+    auto it=unique(all(s));
+    s.resize(distance(s.begin(),it));
+    for(it=s.begin(); it!=s.end(); it++)ans+=*it;
+    if(ans.size()==1){
+        cout<<0<<nl;
+        return;
+    }
+    int mn=INT_MAX,f=0;
+    for(int i=0; i<len(ans)-2; i++)
+    {
+        string res=ans.substr(i,3);
+        string xx=res;
+        sort(all(res));
+        if(res[0]=='1' and res[1]=='2' and res[2]=='3')
+        {
+            f=1;
+            if(mn>v[i+1])mn=v[i+1];
+        }
+    }
+   if(f==1)cout<<mn+2<<nl;
+   else cout<<0<<nl;
+}
+
+int main()
+{
+    ll tc;
+    cin>>tc;
+    while(tc--)
+    {
+        solved();
+    }
+}
