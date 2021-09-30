@@ -1,0 +1,114 @@
+/**
+                                        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+
+
+    NAME                : MD : IQBAL MAHMUD Al Pha
+
+    INSTITUTION NAME    :HAJEE MOHAMMAD DANESH SCIENCE AND TECHNOLOGY UNIVERSITY,DINAJPUR,BANGLADESH
+
+    EMAIL               : mdiqbalmahmud857319@gmail.com
+
+**/
+
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define im                -1e18
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define oh                cout<<"Alpha valo sele"<<endl;
+
+#define for0(a,n)         for(int i=a;i<n;i++)
+#define for1(a,n)         for(int i=a;i<=n;i++)
+#define rfor0(n, a)       for(int i=n-1; i>=a; i--)
+#define rfor1(n, a)       for(int i=n; i>a; i--)
+
+#define nl                endl
+#define len(v)            v.size()
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define no                cout<<"NO"<<nl;
+#define yes               cout<<"YES"<<nl;
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               100000000000
+#define mod               1000000007 //10^9+7;
+#define num               100005
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+int tree[105]= {0};
+
+void build(int a[],int s,int e,int cnt)
+{
+    //cout<<s<<' '<<e<<' ';
+    if(s>e)return;
+    int mx=INT_MIN,index;
+    for(int i=s; i<=e; i++)
+    {
+        if(a[i]>mx)
+        {
+            mx=a[i];
+            index=i;
+        }
+    }
+    //cout<<"max = "<<mx<<' '<<index<<nl;
+    tree[mx]=cnt;
+    build(a,index+1,e,cnt+1);
+    build(a,s,index-1,cnt+1);
+}
+
+void solved()
+{
+    int n;
+    cin>>n;
+    int a[n];
+    mem(tree,0);
+    for(int i=0; i<n; i++)
+    {
+        cin>>a[i];
+    }
+    build(a,0,n-1,0) ;
+    for(int i=0; i<n; i++)
+    {
+        cout<<tree[a[i]]<<' ';
+    }
+    cout<<nl;
+}
+
+int main()
+{
+    ll tc;
+    cin>>tc;
+    //tc=1;
+    while(tc--)
+    {
+        solved();
+    }
+}
+/**
+
+3
+5
+3 5 2 1 4
+1
+1
+4
+4 3 1 2
+
+**/
