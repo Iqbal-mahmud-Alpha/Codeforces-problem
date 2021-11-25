@@ -1,0 +1,93 @@
+/**
+                                        بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ
+**/
+#include <bits/stdc++.h>
+using namespace std;
+#define faster            ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+#define ff                first
+#define ss                second
+#define pb                push_back
+#define pr                pair<int,int>
+#define im                -1e18
+#define mem(a,b)          memset(a,b,sizeof(a))
+#define gcd(a, b)         __gcd(a, b)
+#define lcm(a, b)         (a * (b / gcd(a, b)))
+#define all(a)            a.begin(), a.end()
+#define setbit(n)         __builtin_popcount(n);
+#define totalbit(n)       log2(n)+1
+#define oh                cout<<"Alpha valo sele"<<endl;
+
+#define for0(a,n)         for(int i=a;i<n;i++)
+#define for1(a,n)         for(int i=a;i<=n;i++)
+#define rfor0(n, a)       for(int i=n-1; i>=a; i--)
+#define rfor1(n, a)       for(int i=n; i>a; i--)
+
+#define nl                endl
+#define len(v)            v.size()
+#define lena(a)           sizeof(a)/sizeof(a[0])
+#define no                cout<<"NO"<<nl;
+#define yes               cout<<"YES"<<nl;
+#define posation(x)       cout<<fixed<<setprecision(x)
+#define pi                3.141592653589793
+#define INF               100000000000
+#define mod               1000000007 //10^9+7;
+#define num               105
+
+/**----data type----**/
+typedef long long int ll;
+typedef unsigned long long int llu;
+
+/**---Graph move---**/
+int dx[]= {-1, 0, 1,  0, -1, -1,  1, 1};
+int dy[]= { 0, 1, 0, -1, -1,  1, -1, 1};
+int kx[]= {-2,-1, 1, 2,  2,  1, -1, -2};
+int ky[]= { 1, 2, 2, 1, -1, -2, -2, -1};
+
+//map<int,int,greater<int>>m;
+int ar[num];
+void solved()
+{
+    int n,a,b;
+    cin>>n>>a>>b;
+    mem(ar,0);
+    vector<int>mn,mx;
+    mn.pb(a),mx.pb(b);
+    ar[a]=1,ar[b]=1;
+    int l=1,r=1,cnt=(n/2)-1;
+    while(cnt)
+    {
+        if(ar[n]==0 and n!=a and n!=b)
+        {
+            mn.pb(n),ar[n]=1;
+            cnt--;
+        }
+        n--;
+    }
+    for1(1,n)
+    {
+        if(ar[i]==0)mx.pb(i);
+    }
+    int xx=*min_element(all(mn));
+    int yy=*max_element(all(mx));
+    if(xx==a && yy==b)
+    {
+        for(int i:mn)cout<<i<<' ';
+        for(int i:mx)cout<<i<<' ';
+        cout<<nl;
+    }
+    else cout<<-1<<nl;
+}
+
+int main()
+{
+    ll tc;
+    cin>>tc;
+    //tc=1;
+    while(tc--)
+    {
+        solved();
+    }
+}
+/**
+
+**/
